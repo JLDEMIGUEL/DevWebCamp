@@ -2,10 +2,10 @@
 
 
 .auth{
-    @include m.contenedor;
+    @include m.contenedor-sm;
 
 
     &__texto{
-        color: blue;
+        font-size: 2rem;
     }
 }
