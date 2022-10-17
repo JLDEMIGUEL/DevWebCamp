@@ -2,7 +2,7 @@
 @use 'base/variables' as v;
 
 .header {
-    min-height: 60rem;
+    min-height: 40rem;
     background-image: url('../img/grafico.svg'), url('../img/grafico.svg'),
         linear-gradient(to right, rgba(v.$negro, 1), rgba(v.$negro, .5)),
         url('../img/header.jpg');
@@ -26,14 +26,7 @@
     }
 
     &__enlace {
-        color: v.$blanco;
-        font-size: 1.4rem;
-        font-weight: v.$bold;
-        text-transform: uppercase;
-
-        &:hover {
-            color: v.$azul;
-        }
+        @include m.enlace;
     }
 
     &__contenido {
