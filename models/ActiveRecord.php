@@ -136,12 +136,12 @@ class ActiveRecord {
         $query = "SELECT * FROM " . static::$tabla . " WHERE ";
         foreach($array as $key => $value){
             if($key != array_key_last($array))
-                $query .= " '${key}' = '${value}' AND";
+                $query .= " ${key} = '${value}' AND";
             else
-                $query .= " '${key}' = '${value}'";
+                $query .= " ${key} = '${value}'";
         }
         $resultado = self::consultarSQL($query);
-        return array_shift( $resultado ) ;
+        return $resultado;
     }
 
     //Traer un total de registros

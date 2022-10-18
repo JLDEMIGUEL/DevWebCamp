@@ -21,5 +21,15 @@
             color: v.$blanco;
             background-color: v.$azul;
         }
+
+        &--deshabilitada{
+            @extend .horas__hora;
+            border: 1px  solid v.$gris;
+            color: v.$gris;
+            opacity: .5;
+            &:hover{
+                cursor: not-allowed;
+            }
+        }
     }
 }

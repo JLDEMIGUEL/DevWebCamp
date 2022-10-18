@@ -417,6 +417,9 @@ h3 {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+.formulario__input--textarea, .formulario__select--textarea {
+  resize: none;
+}
 .formulario__radio {
   display: flex;
   gap: 2rem;
@@ -493,17 +496,25 @@ h3 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-.horas__hora {
+.horas__hora, .horas__hora--deshabilitada {
   color: #007df4;
   border: 1px solid #007df4;
   border-radius: 1rem;
   padding: 1rem;
   text-align: center;
 }
-.horas__hora:hover, .horas__hora--seleccionada {
+.horas__hora:hover, .horas__hora--deshabilitada:hover, .horas__hora--seleccionada {
   cursor: pointer;
   color: #FFFFFF;
   background-color: #007df4;
+}
+.horas__hora--deshabilitada {
+  border: 1px solid #64748B;
+  color: #64748B;
+  opacity: 0.5;
+}
+.horas__hora--deshabilitada:hover {
+  cursor: not-allowed;
 }
 
 .header {
@@ -987,5 +998,26 @@ h3 {
   .paginacion__enlace--actual {
     display: inline;
   }
+}
+
+.listado-ponentes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+.listado-ponentes__ponente, .listado-ponentes__ponente:hover, .listado-ponentes__ponente--seleccionado {
+  padding: 1rem 0;
+  color: #007df4;
+  border: 1px solid #007df4;
+  border-radius: 1rem;
+  text-align: center;
+}
+.listado-ponentes__ponente:hover, .listado-ponentes__ponente--seleccionado:hover, .listado-ponentes__ponente--seleccionado {
+  background-color: #007df4;
+  color: #FFFFFF;
+  cursor: pointer;
 }
 /*# sourceMappingURL=app.css.map */
