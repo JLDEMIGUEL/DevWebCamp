@@ -170,11 +170,10 @@ class PonentesController{
 
     public static function eliminar(){
 
-        if(!is_admin()){
-            header('Location: /login');
-        }
-
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            if(!is_admin()){
+                header('Location: /login');
+            }
             $id = $_POST['id'];
             $id = filter_var($id, FILTER_VALIDATE_INT);
             if(!$id){

@@ -14,6 +14,9 @@ use MVC\Router;
 class EventosController{
 
     public static function index($router){
+        if(!is_admin()){
+            header('Location: /login');
+        }
 
         $pagina_actual = $_GET['page'];
         $pagina_actual = filter_var($pagina_actual,FILTER_VALIDATE_INT);
@@ -45,6 +48,9 @@ class EventosController{
 
 
     public static function crear($router){
+        if(!is_admin()){
+            header('Location: /login');
+        }
 
         $alertas=[];
 
@@ -76,5 +82,76 @@ class EventosController{
             'dias' => $dias,
             'horas' => $horas
         ]);
+    }
+
+
+    public static function editar($router){
+        if(!is_admin()){
+            header('Location: /login');
+        }
+
+        $id = $_GET['id'];
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        if(!$id){
+            header('Location: /admin/eventos');
+        }
+
+        $alertas=[];
+
+        $evento = Evento::find($id);
+
+        if(!$evento){
+            header('Location: /admin/eventos');
+        }
+
+        $categorias = Categoria::all();
+        $dias = Dia::all('ASC');
+        $horas = Hora::all('ASC');
+
+        if($_SERVER['REQUEST_METHOD']==='POST'){
+            $evento->sincronizar($_POST);
+
+            $alertas = $evento->validar();
+
+            if(empty($alertas)){
+                $resultado = $evento->guardar();
+                if($resultado){
+                    header('Location: /admin/eventos');
+                }
+            }
+        }
+
+
+        $router->render('admin/eventos/editar',[
+            'titulo'=> 'Registrar Evento',
+            'alertas'=>$alertas,
+            'evento'=>$evento,
+            'categoria'=>$categorias,
+            'dias' => $dias,
+            'horas' => $horas
+        ]);
+    }
+
+    public static function eliminar(){
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            if(!is_admin()){
+                header('Location: /login');
+            }
+            $id = $_POST['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+            if(!$id){
+                header('Location: /admin/eventos');
+            }
+
+            $evento = Evento::find($id);
+
+            if(!isset($evento)){
+                header('Location: /admin/eventos');
+            }
+            $evento->eliminar();
+
+            header('Location: /admin/eventos');
+        }
     }
 }

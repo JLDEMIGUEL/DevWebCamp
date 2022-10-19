@@ -27,7 +27,7 @@
         <nav class="navegacion">
             <a href="/devwebcamp" class="navegacion__enlace">Evento</a>
             <a href="/paquetes" class="navegacion__enlace">Paquetes</a>
-            <a href="/workshop-conferencias" class="navegacion__enlace">Workshop / Conferencias</a>
+            <a href="/workshops-conferencias" class="navegacion__enlace">Workshop / Conferencias</a>
             <a href="/registro" class="navegacion__enlace">Comprar Pase</a>
         </nav>
     </div>
