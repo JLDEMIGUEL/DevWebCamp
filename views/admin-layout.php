@@ -26,6 +26,7 @@
             </main>
         </div>
 
-    <script src="/build/js/bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" integrity="sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=" crossorigin="anonymous"></script>
+    <script src="/build/js/main.min.js" defer></script>
 </body>
 </html>

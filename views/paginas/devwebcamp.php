@@ -4,7 +4,7 @@
 
 
     <div class="devwebcamp__grid">
-        <div class="devwebcamp__imagen">
+        <div  <?php aos_animacion()?> class="devwebcamp__imagen">
             <picture>
                 <source srcset="build/img/sobre_devwebcamp.avif" type="image/avif">
                 <source srcset="build/img/sobre_devwebcamp.webp" type="image/webp">
@@ -12,7 +12,7 @@
             </picture>
         </div>
 
-        <div class="devwebcamp__contenido">
+        <div  <?php aos_animacion()?> class="devwebcamp__contenido">
             <p class="devwebcamp__texto">
             Nulla at semper odio. Nam tincidunt ex vel egestas vehicula. Nunc id ornare augue, at vestibulum massa. Aliquam et fringilla metus. Integer nec leo fringilla, iaculis leo non, iaculis lorem. Donec leo nisi, sagittis ultrices molestie vitae, dictum facilisis erat. Mauris metus ante, mattis non dictum id
             </p>

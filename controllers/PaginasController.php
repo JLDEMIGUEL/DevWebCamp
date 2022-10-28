@@ -14,8 +14,42 @@ class PaginasController{
 
 
     public static function index(Router $router){
+        $eventos = Evento::ordenar('hora_id','ASC');
+
+        $eventos_formateados = [];
+        foreach($eventos as $evento){
+            $evento->categoria = Categoria::find($evento->categoria_id)->nombre;
+            $evento->hora = Hora::find($evento->hora_id)->hora;
+            $evento->dia = Dia::find($evento->dia_id)->nombre;
+            $ponente = Ponente::find($evento->ponente_id);
+            $evento->ponente = $ponente; 
+            if($evento->dia_id === "1" && $evento->categoria_id === "1"){
+                $eventos_formateados['conferencias_v'][]=$evento;
+            }
+            if($evento->dia_id === "2" && $evento->categoria_id === "1"){
+                $eventos_formateados['conferencias_s'][]=$evento;
+            }
+            if($evento->dia_id === "1" && $evento->categoria_id === "2"){
+                $eventos_formateados['workshops_v'][]=$evento;
+            }
+            if($evento->dia_id === "2" && $evento->categoria_id === "2"){
+                $eventos_formateados['workshops_s'][]=$evento;
+            }
+        }
+        $ponentes_total = Ponente::total();
+        $conferencias_total = Evento::total('categoria_id',1);
+        $workshops_total = Evento::total('categoria_id',2);
+
+        $ponentes = Ponente::all();
+
+
         $router->render('paginas/index', [
-            'titulo'=>'Inicio'
+            'titulo'=>'Inicio',
+            'eventos'=>$eventos_formateados,
+            'ponentes_total'=>$ponentes_total,
+            'conferencias_total'=>$conferencias_total,
+            'workshops_total'=>$workshops_total,
+            'ponentes'=>$ponentes
         ]);
     }
 
@@ -64,4 +98,9 @@ class PaginasController{
         ]);
     }
 
+    public static function notfounded(Router $router){
+        $router->render('paginas/error', [
+            'titulo'=>'Pagina no encontrada'
+        ]);
+    }
 }
